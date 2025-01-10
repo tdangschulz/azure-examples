@@ -6,12 +6,12 @@ const databaseController = require("../controllers/database");
 const envController = require("../controllers/envVariable");
 const storageController = require("../controllers/storage");
 
-// Beispiel-Route
 router.get("/example", exampleController.getExample);
 router.get("/database", databaseController.database);
 router.get("/env", envController.getEnvVariable);
 
 const upload = multer({ dest: "uploads/" });
 router.post("/upload", upload.single("file"), storageController.processUpload);
+router.get("/download/:fileName", storageController.processDownload);
 
 module.exports = router;
