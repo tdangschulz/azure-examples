@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 const AZURE_STORAGE_CONNECTION_STRING =
-  "DefaultEndpointsProtocol=https;AccountName=XXXX;AccountKey=XXXXX;EndpointSuffix=core.windows.net";
+  process.env.AZURE_STORAGE_CONNECTION_STRING;
 
 const blobServiceClient = BlobServiceClient.fromConnectionString(
   AZURE_STORAGE_CONNECTION_STRING
