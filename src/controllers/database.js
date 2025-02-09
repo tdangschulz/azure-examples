@@ -12,7 +12,7 @@ exports.database = async (req, res) => {
 const connecting = async () => {
   // Create the connection to database
   return await mysql.createConnection({
-    host: "192.168.42.179",
+    host: "mydemoserver.mysql.database.azure.com",
     user: "user",
     password: "password",
     port: 3306,

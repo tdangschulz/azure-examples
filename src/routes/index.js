@@ -1,6 +1,9 @@
 const express = require("express");
 const multer = require("multer");
 const router = express.Router();
+
+const loginController = require("../controllers/login");
+
 const exampleController = require("../controllers/exampleController");
 const databaseController = require("../controllers/database");
 const envController = require("../controllers/envVariable");
@@ -16,5 +19,9 @@ router.post("/upload", upload.single("file"), storageController.processUpload);
 router.get("/download/:fileName", storageController.processDownload);
 
 router.post("/analyze", upload.single("file"), computeVisionController.analyze);
+
+router.get("/login", loginController.login);
+router.get("/login/redirect", loginController.redirect);
+router.get("/login/auth", loginController.admin);
 
 module.exports = router;
