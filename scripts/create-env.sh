@@ -1,15 +1,23 @@
 #!/bin/bash
 
-# rm -f cloud.sh && touch cloud.sh && chmod +x cloud.sh  && nano cloud.sh &&  ./cloud.sh
-# sudo stress --cpu 4 --timeout 300
-# watch az vmss list-instances --resource-group rg-lb-order-tds --name vmss-lb-weu-tds --output table
+# 0. Bitte alle unteren Variablen anpassen. ersetze tds mit den eigenen Initialen
+# 1. cloud shell öffnen
+# 2. folgendes in der shell ausführen und warten: rm -f cloud.sh && touch cloud.sh && chmod +x cloud.sh  && nano cloud.sh &&  ./cloud.sh
+# 3. Auf eine VM Instanz einloggen
+# 4. Folgendes auf einer VM Instanz ausführen: sudo apt update && sudo apt install stress python3 -y
+# 5a. VM stressen mit: sudo stress --cpu 4 --timeout 300
+# 5b. http server starten: bash -c 'echo "Hello from $(hostname)" > index.html && python3 -m http.server 8080'
+
+# Wenn eine weietere Instanz gestartet wird, dann bitte die Pakete installieren und den http server starten!!!!
+
+
 
 
 # Variablen anpassen
 resource_group=rg-lb-order-tds
 region=germanywestcentral
 username=adminuser
-password='xxxxx'
+password='SecretPassword123!@#'
 vnet_name=vnet-lb-weu-tds
 subnet_name=subnet-lb-westeu-tds
 public_ip_lb_name=pip-config-weu-tds
@@ -93,6 +101,18 @@ az network lb outbound-rule create \
 # NSG-Regel erstellen, um ausgehenden Internetzugang zu erlauben
 nsg_name=nsg-$vnet_name
 az network nsg create --resource-group $resource_group --name $nsg_name --location $region
+
+az network nsg rule create \
+  --resource-group $resource_group \
+  --nsg-name $nsg_name \
+  --name AllowHTTP8080 \
+  --direction Inbound \
+  --priority 200 \
+  --access Allow \
+  --protocol Tcp \
+  --destination-port-ranges 8080 \
+  --source-address-prefixes '*' \
+  --source-port-ranges '*'
 
 az network nsg rule create \
   --resource-group $resource_group \
