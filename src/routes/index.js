@@ -2,26 +2,28 @@ const express = require("express");
 const multer = require("multer");
 const router = express.Router();
 
-const loginController = require("../controllers/login");
-
 const exampleController = require("../controllers/exampleController");
-const databaseController = require("../controllers/database");
-const envController = require("../controllers/envVariable");
-const storageController = require("../controllers/storage");
-const computeVisionController = require("../controllers/computeVision");
+// const databaseController = require("../controllers/database");
+// const loginController = require("../controllers/login");
+// const envController = require("../controllers/envVariable");
+// const storageController = require("../controllers/storage");
+// const computeVisionController = require("../controllers/computeVision");
 
 router.get("/example", exampleController.getExample);
-router.get("/database", databaseController.database);
-router.get("/env", envController.getEnvVariable);
+router.get("/stateless", exampleController.stateless);
+router.get("/stateful", exampleController.stateful);
 
-const upload = multer({ dest: ".uploads/" });
-router.post("/upload", upload.single("file"), storageController.processUpload);
-router.get("/download/:fileName", storageController.processDownload);
+// router.get("/database", databaseController.database);
+// router.get("/env", envController.getEnvVariable);
 
-router.post("/analyze", upload.single("file"), computeVisionController.analyze);
+// const upload = multer({ dest: ".uploads/" });
+// router.post("/upload", upload.single("file"), storageController.processUpload);
+// router.get("/download/:fileName", storageController.processDownload);
 
-router.get("/login", loginController.login);
-router.get("/login/redirect", loginController.redirect);
-router.get("/login/auth", loginController.admin);
+// router.post("/analyze", upload.single("file"), computeVisionController.analyze);
+
+// router.get("/login", loginController.login);
+// router.get("/login/redirect", loginController.redirect);
+// router.get("/login/auth", loginController.admin);
 
 module.exports = router;

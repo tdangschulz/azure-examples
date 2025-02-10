@@ -4,7 +4,7 @@ const session = require("cookie-session");
 
 const app = express();
 app.use(cookieParser());
-const port = 3001;
+const port = 8080;
 
 // Importiere die Route
 const exampleRoute = require("./routes");
@@ -33,6 +33,6 @@ app.use("/api", exampleRoute);
 app.listen(port, () => {
   console.log(`Server läuft auf http://localhost:${port}`);
   console.warn(
-    "Example Endpunkt kann man mit http://localhost:3001/api/example erreichen"
+    `Example Endpunkt kann man mit http://localhost:${port}/api/example erreichen`
   );
 });
