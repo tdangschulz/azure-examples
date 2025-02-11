@@ -2,8 +2,8 @@
 
 ## Aufgabe 1a
 
-- Führen das Script `create-env.sh` in der **cloud shell**s von azure aus
-- Verschaffe dir ein Überblick welche Resourcen angelegt wurden, über das Script.s
+- Führen das Script `create-env.sh` in der **cloud shell** von azure aus
+- Verschaffe dir ein Überblick welche Resourcen angelegt wurden, über das Script.
 
 ## Aufgabe 1b
 
