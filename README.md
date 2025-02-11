@@ -12,5 +12,5 @@
 ## Aufgabe 1c
 
 - Konfiguriere den ScaleSet so, dass zwei Instanzen gleichzeitig laufen. Starte per Befehl in den Instanzen ein einfachen Webserver (siehe Kommentar im Script)
-- rufe den Webserver auf über die Public IP die da erstellt wurde
-- stoppe eine Instanz und beochate was passiwert, wenn man weiterhin den Server aufruft
+- rufe den Webserver auf über die Public IP die erstellt wurde
+- stoppe eine Instanz und beochate was passiert, wenn man weiterhin den Server aufruft
