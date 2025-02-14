@@ -58,11 +58,15 @@ az vmss create \
   --load-balancer $loadbalance_name \
   --authentication-type password \
   --generate-ssh-keys \
-  --custom-data "#cloud-config
-      package_update: true
-      package_upgrade: true
-      packages:
-        - stress"
+  --custom-data '#cloud-config
+package_update: true
+package_upgrade: true
+packages:
+  - stress
+  - python3
+runcmd:
+  - echo "Hello from $(hostname)" > /home/$username/index.html
+  - nohup python3 -m http.server 8080 &'
 
 # Load Balancer-Probe für SSH
 az network lb probe create --lb-name $loadbalance_name  \

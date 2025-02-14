@@ -1,16 +1,19 @@
 const jwt = require("jsonwebtoken");
 const { ConfidentialClientApplication } = require("@azure/msal-node");
 
-const clientSecret = process.env.AZURE_CLIENT_SECRET;
-const tenantId = process.env.AZURE_TENANT_ID;
-const clientId = process.env.AZURE_CLIENT_ID;
+const clientSecret =
+  process.env.AZURE_CLIENT_SECRET || "6Qe8Q~9_U76UaoKjpWNP6KWMg1mLnKJMOtNXncyb";
+const tenantId =
+  process.env.AZURE_TENANT_ID || "4dc5490f-a4dd-4300-b4a5-07cf854c0efa";
+const clientId =
+  process.env.AZURE_CLIENT_ID || "d419e2ab-eda0-4e22-a866-5db7f4019c6a";
 
 const config = {
   auth: {
     clientId: clientId,
     authority: `https://login.microsoftonline.com/${tenantId}`,
     clientSecret: clientSecret,
-    redirectUri: "http://localhost:3001/api/login/redirect",
+    redirectUri: "http://localhost:8080/api/login/redirect",
   },
 };
 
